@@ -3,23 +3,52 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import TextField from "@material-ui/core/TextField";
 import RaisedButton from "@material-ui/core/Button";
+import Button from "@material-ui/core/Button";
 
 import ReactFileReader from "react-file-reader";
 
-import pdf_extractor from '../components/pdf_extractor';
+import pdf_extractor from "../components/pdf_extractor";
 
 const pageStyles = makeStyles((theme) => ({
   root: {
-    height: '400px',
-    width: '400px',
-    border: 'solid',
-    borderColor: 'black'
+    height: "400px",
+    width: "400px",
+    border: "solid",
+    borderColor: "black",
+    borderRadius: '1rem',
+    margin: '0'
   },
+  header: {
+    height: '50px',
+    backgroundColor: 'black',
+    marginBottom: '2rem',
+  },
+  headertext: {
+    color: 'white',
+    margin: '0 auto 0 auto',
+    verticalAlign:'middle',
+    textAlign: 'center',
+    paddingTop: '0.3rem'
+  },    
   textinput: {
-    width: '250px'
+    width: "250px",
   },
   btn: {
-      width: '100px'
+    width: "fit-content",
+    height: "30px",
+    margin: "1rem auto",
+    display: "flex",
+    textAlign: "center",
+  },
+  text: {
+    fontSize: "1rem",
+    color: "green",
+    margin: "0.5rem auto 1rem auto",
+    textAlign: "center",
+  },
+  link: {
+    textDecoration:'none',
+    color: 'black'
   }
 }));
 
@@ -50,14 +79,17 @@ function PopupPage(props) {
     };*/
   };
 
-  const handleFiles = files => {
+  const handleFiles = (files) => {
     setFile(files.base64);
-    
-    setIcs(pdf_extractor(file))
-  }
+
+    setIcs(pdf_extractor(file));
+  };
 
   return (
-    <div className="main" className={classes.root}>
+    <div id="main" className={classes.root}>
+      <div className={classes.header}>
+          <h1 className={classes.headertext}>Outline</h1>
+      </div>
       <TextField
         id="outlined-basic"
         label="Name"
@@ -87,13 +119,27 @@ function PopupPage(props) {
         <input type="file" onChange={handleCapture} accept="application/pdf"  />
       </RaisedButton>*/}
 
-      <ReactFileReader handleFiles={handleFiles} fileTypes={[".pdf"]} base64={true}>
-        <button className={classes.btn}>Upload</button>
+      <ReactFileReader
+        handleFiles={handleFiles}
+        fileTypes={[".pdf"]}
+        base64={true}
+      >
+        <Button variant="outlined" className={classes.btn}>
+          Upload
+        </Button>
       </ReactFileReader>
 
-      <a href={file} download>
-        Download File
-      </a>
+      {file && (
+        <div className={classes.text}>File has been successfully uploaded</div>
+      )}
+
+      {file && (
+        <Button variant="outlined" className={classes.btn}>
+          <a href={file} download className={classes.link}>
+            Download ICS File
+          </a>
+        </Button>
+      )}
     </div>
   );
 }
