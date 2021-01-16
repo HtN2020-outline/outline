@@ -4,10 +4,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import RaisedButton from "@material-ui/core/Button";
 
+import ReactFileReader from "react-file-reader";
+
 const pageStyles = makeStyles((theme) => ({
   root: {
-      height: '20vw',
-      width: '20vw'
+    height: "20vw",
+    width: "20vw",
   },
 }));
 
@@ -31,13 +33,17 @@ function PopupPage(props) {
   };
 
   const handleCapture = ({ target }) => {
-    const fileReader = new FileReader();
+    /*const fileReader = new FileReader();
 
     fileReader.readAsDataURL(target.files[0]);
     fileReader.onload = (e) => {
         setFile(e.target.result)
-    };
+    };*/
   };
+
+  const handleFiles = files => {
+    setFile(files.base64);
+  }
 
   return (
     <div className={classes.root}>
@@ -61,20 +67,22 @@ function PopupPage(props) {
         className="login__form__textinput"
         style={{ display: "flex", margin: "1vw auto 0vw auto" }}
       />
-      <RaisedButton
+      {/*<RaisedButton
         containerElement="label" // <-- Just add me!
         label="Upload File"
       >
         <input type="file" onChange={handleCapture} accept="application/pdf"  />
-      </RaisedButton>
+      </RaisedButton>*/}
+
+      <ReactFileReader handleFiles={handleFiles} fileTypes={[".pdf"]} base64={true}>
+        <button className="btn">Upload</button>
+      </ReactFileReader>
 
       <a href={file} download>
-            Download File
+        Download File
       </a>
 
-      <button onClick={console.log("hi")}>
-            lajglajglkajg
-      </button>
+      <button onClick={console.log("hi")}>lajglajglkajg</button>
     </div>
   );
 }
