@@ -6,6 +6,8 @@ import RaisedButton from "@material-ui/core/Button";
 
 import ReactFileReader from "react-file-reader";
 
+import pdf_extractor from '../components/pdf_extractor';
+
 const pageStyles = makeStyles((theme) => ({
   root: {
     height: '400px',
@@ -50,6 +52,8 @@ function PopupPage(props) {
 
   const handleFiles = files => {
     setFile(files.base64);
+    
+    setIcs(pdf_extractor(file))
   }
 
   return (
