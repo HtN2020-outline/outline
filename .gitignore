@@ -1,4 +1,6 @@
-
+/client/node_modules
+/client/package-lock.json
+/client/.env
 # Created by https://www.toptal.com/developers/gitignore/api/node,vscode,react,reactnative,yarn
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,vscode,react,reactnative,yarn
 

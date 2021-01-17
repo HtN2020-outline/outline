@@ -7,7 +7,11 @@ import Button from "@material-ui/core/Button";
 
 import ReactFileReader from "react-file-reader";
 
-import pdf_extractor from "../components/pdf_extractor";
+
+import { connect } from "react-redux";
+import {
+  getIcs,
+} from "../store/actions";
 
 const pageStyles = makeStyles((theme) => ({
   root: {
@@ -81,8 +85,7 @@ function PopupPage(props) {
 
   const handleFiles = (files) => {
     setFile(files.base64);
-
-    setIcs(pdf_extractor(file));
+    setIcs(props.getIcs(file));
   };
 
   return (
@@ -144,4 +147,17 @@ function PopupPage(props) {
   );
 }
 
-export default PopupPage;
+const mapStateToProps = (state) => {
+  return {
+    file: state.file,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getIcs: (file) =>
+      dispatch(getIcs(file)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PopupPage);
