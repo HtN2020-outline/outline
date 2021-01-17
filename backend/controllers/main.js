@@ -1,30 +1,55 @@
 
 function get_ics(file) {
-
+  const fs = require('fs');
+  const pdf = require('pdf-parse');
+  let dataBuffer = fs.readFileSync('../trial/dom.pdf');
+ 
+  pdf(dataBuffer).then(function(data) {
+   
+      // number of pages
+      console.log(data.numpages);
+      // number of rendered pages
+      console.log(data.numrender);
+      // PDF info
+      console.log(data.info);
+      // PDF metadata
+      console.log(data.metadata); 
+      // PDF.js version
+      // check https://mozilla.github.io/pdf.js/getting_started/
+      console.log(data.version);
+      // PDF text
+      console.log(data.text);      
+  });
+  return data.text
 }
 
 exports.putDocument = async (req, res) => {
-    const file = req.body.file;
+    const file = req.params.file;
 
     const ics_file = get_ics(file);
+
+    console.log(ics_file);
 
     res.status(200).json({
       status: "success",
       data: {
-        ics: isc_file,
+        ics: ics_file,
       },
     });
 };
 
 // Get Investor Profile
 exports.getDocument = async (req, res) => {
-  /*const id = req.params.id;
-  const profile = await Founder.findById(id);
+  const file = req.body.file;
 
-  res.status(200).json({
-    status: "success",
-    data: {
-      profile,
-    },
-  });*/
+    const ics_file = get_ics(file);
+    
+    console.log('putDOcument')
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        ics: ics_file,
+      },
+    });
 };

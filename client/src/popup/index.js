@@ -7,11 +7,7 @@ import Button from "@material-ui/core/Button";
 
 import ReactFileReader from "react-file-reader";
 
-
-import { connect } from "react-redux";
-import {
-  getIcs,
-} from "../store/actions";
+const axios = require("axios");
 
 const pageStyles = makeStyles((theme) => ({
   root: {
@@ -85,7 +81,23 @@ function PopupPage(props) {
 
   const handleFiles = (files) => {
     setFile(files.base64);
-    setIcs(props.getIcs(file));
+    console.log('hi3')
+
+    axios({
+      method: "post",
+      url: `http://localhost:5000/`,
+      data: {
+          file: file
+      }
+    })
+      .then((res) => {
+        setIcs(res.data.ics);
+        console.log(ics)
+      })
+      .catch((err) => {
+
+      });
+    
   };
 
   return (
@@ -147,17 +159,4 @@ function PopupPage(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    file: state.file,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getIcs: (file) =>
-      dispatch(getIcs(file)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PopupPage);
+export default PopupPage;
