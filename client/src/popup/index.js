@@ -86,7 +86,7 @@ function PopupPage(props) {
       method: "post",
       url: `http://localhost:5000/`,
       data: {
-          file: files.base64
+          file: 4//files.base64
       }
     })
       .then((res) => {
@@ -147,9 +147,9 @@ function PopupPage(props) {
         <div className={classes.text}>File has been successfully uploaded</div>
       )}
 
-      {file && (
+      {ics && (
         <Button variant="outlined" className={classes.btn}>
-          <a href={file} download className={classes.link}>
+          <a href={ics} download className={classes.link}>
             Download ICS File
           </a>
         </Button>

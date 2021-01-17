@@ -23,30 +23,42 @@ function get_ics(file) {
   });
   return data.text*/
 
-  const data = {start: [2021,1,30,9,30], duration:{hours: 2, minutes: 3}, title: "Written Assignment", organizer: {name: 'Admin', email: 'admin@gmail.com'}}
+  /*const data = [{
+    start: [2021, 1, 30, 9, 30],
+    duration: { hours: 2, minutes: 3 },
+    title: "Written Assignment",
+    organizer: { name: "Admin", email: "admin@gmail.com" },
+  },
+]*/
+  const ics = require('ics')
 
-  const event = {
-      start: data.start,
-      duration: data.duration,
-      title: data.title,
-      organizer: data.organizer,
+  console.log('reached backend')
 
+  const { error, value } = ics.createEvents([
+    {
+      title: "Lunch",
+      start: [2018, 1, 15, 12, 15],
+      duration: { minutes: 45 },
+    },
+    {
+      title: "Dinner",
+      start: [2018, 1, 15, 12, 15],
+      duration: { hours: 1, minutes: 30 },
+    },
+  ]);
+
+  if (error) {
+    console.log(error)
+    return
   }
-  ics.createEvent(event, (error, value) => {
-      if (error) {
-        console.log(error)
-        return
-      }
-    
-      console.log(value)
-    })
-  
+  console.log(value)
+  return value;
 }
 
 exports.putDocument = async (req, res) => {
   const file = req.body.file;
 
-  const ics_file = 4; //get_ics(file);
+  const ics_file = get_ics(file);
 
   console.log(file);
 
