@@ -1,3 +1,7 @@
+var FileSaver = require('file-saver');
+
+
+
 function get_ics(file) {
   /*const fs = require('fs');
   const pdf = require('pdf-parse');
@@ -58,9 +62,13 @@ function get_ics(file) {
 exports.putDocument = async (req, res) => {
   const file = req.body.file;
 
-  const ics_file = get_ics(file);
+   const ics_file = get_ics(file);
 
-  console.log(file);
+  // FileSaver.saveAs([[ics_file], "my_calendar.ics", {type: "text/calendar;charset=utf-8"}]);
+
+  //const ics_file = FileSaver.saveAs([[get_ics(file)], "my_calendar.ics", {type: "text/calendar;charset=utf-8"}]);
+
+  console.log(ics_file);
 
   res.status(200).json({
     status: "success",

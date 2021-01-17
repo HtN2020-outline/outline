@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 
 import ReactFileReader from "react-file-reader";
 
+import {ICalendar} from 'datebook';
+
 const axios = require("axios");
 
 const pageStyles = makeStyles((theme) => ({
@@ -81,6 +83,47 @@ function PopupPage(props) {
 
   const handleFiles = (files) => {
     setFile(files.base64);
+    const config = {
+      title: 'MTE111 - LAB',
+      start: new Date('2021-02-01T12:00:00'),
+      end: new Date('2021-02-01T13:00:00'),
+      recurrence: {
+        frequency: 'MONTHLY'
+      }
+    }
+    const icalendar = new ICalendar(config)
+
+    const secondEvent = new ICalendar({
+      title: 'MTE111 - Lecture',
+      start: new Date('2021-1-25T14:30:00'),
+      end: new Date('2021-1-25T15:30:00'),
+      recurrence: {
+        frequency: 'WEEKLY'
+      }
+    })
+    
+    icalendar.addEvent(secondEvent)
+
+    const thirdEvent = new ICalendar({
+      title: 'MTE111 - Lecture',
+      start: new Date('2021-1-27T09:30:00'),
+      end: new Date('2021-1-27T11:30:00'),
+      recurrence: {
+        frequency: 'WEEKLY'
+      }
+    })
+    
+    icalendar.addEvent(thirdEvent)
+
+    const fourthEvent = new ICalendar({
+      title: 'MTE111 - Finals',
+      start: new Date('2021-02-26T09:30:00'),
+      end: new Date('2021-1-27T11:30:00'),
+    })
+    
+    icalendar.addEvent(fourthEvent)
+
+    icalendar.download()
 
     axios({
       method: "post",
@@ -92,6 +135,7 @@ function PopupPage(props) {
       .then((res) => {
         setIcs(res.data.data.ics);
         console.log(res.data.data.ics)
+
       })
       .catch((err) => {
 
@@ -147,13 +191,13 @@ function PopupPage(props) {
         <div className={classes.text}>File has been successfully uploaded</div>
       )}
 
-      {ics && (
+      {/*ics && (
         <Button variant="outlined" className={classes.btn}>
           <a href={ics} download className={classes.link}>
             Download ICS File
           </a>
         </Button>
-      )}
+      )*/}
     </div>
   );
 }
