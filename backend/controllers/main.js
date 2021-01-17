@@ -1,6 +1,5 @@
-
 function get_ics(file) {
-  const fs = require('fs');
+  /*const fs = require('fs');
   const pdf = require('pdf-parse');
   let dataBuffer = fs.readFileSync('./dom.pdf');
   backend/trial/dom.pdf
@@ -22,25 +21,24 @@ function get_ics(file) {
       // PDF text
       console.log(data.text);      
   });
-  return data.text
+  return data.text*/
+  
 }
 
 exports.putDocument = async (req, res) => {
-    const file = req.body.file;
+  const file = req.body.file;
 
-    const ics_file = 4 //get_ics(file);
+  const ics_file = 4; //get_ics(file);
 
-    console.log(file);
+  console.log(file);
 
-    res.status(200).json({
-      status: "success",
-      data: {
-        ics: ics_file,
-      },
-    });
+  res.status(200).json({
+    status: "success",
+    data: {
+      ics: ics_file,
+    },
+  });
 };
 
 // Get Investor Profile
-exports.getDocument = async (req, res) => {
- 
-};
+exports.getDocument = async (req, res) => {};
