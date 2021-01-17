@@ -81,18 +81,17 @@ function PopupPage(props) {
 
   const handleFiles = (files) => {
     setFile(files.base64);
-    console.log('hi3')
 
     axios({
       method: "post",
       url: `http://localhost:5000/`,
       data: {
-          file: file
+          file: files.base64
       }
     })
       .then((res) => {
-        setIcs(res.data.ics);
-        console.log(ics)
+        setIcs(res.data.data.ics);
+        console.log(res.data.data.ics)
       })
       .catch((err) => {
 

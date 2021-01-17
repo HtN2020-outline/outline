@@ -2,7 +2,8 @@
 function get_ics(file) {
   const fs = require('fs');
   const pdf = require('pdf-parse');
-  let dataBuffer = fs.readFileSync('../trial/dom.pdf');
+  let dataBuffer = fs.readFileSync('./dom.pdf');
+  backend/trial/dom.pdf
  
   pdf(dataBuffer).then(function(data) {
    
@@ -14,6 +15,7 @@ function get_ics(file) {
       console.log(data.info);
       // PDF metadata
       console.log(data.metadata); 
+      
       // PDF.js version
       // check https://mozilla.github.io/pdf.js/getting_started/
       console.log(data.version);
@@ -24,11 +26,11 @@ function get_ics(file) {
 }
 
 exports.putDocument = async (req, res) => {
-    const file = req.params.file;
+    const file = req.body.file;
 
-    const ics_file = get_ics(file);
+    const ics_file = 4 //get_ics(file);
 
-    console.log(ics_file);
+    console.log(file);
 
     res.status(200).json({
       status: "success",
@@ -40,16 +42,5 @@ exports.putDocument = async (req, res) => {
 
 // Get Investor Profile
 exports.getDocument = async (req, res) => {
-  const file = req.body.file;
-
-    const ics_file = get_ics(file);
-    
-    console.log('putDOcument')
-
-    res.status(200).json({
-      status: "success",
-      data: {
-        ics: ics_file,
-      },
-    });
+ 
 };

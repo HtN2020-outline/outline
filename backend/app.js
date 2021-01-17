@@ -17,5 +17,10 @@ app.use(bodyParser.json());
 // Basic Routing
 app.use("/", main_route);
 
+// Express 4.0
+app.use(bodyParser.json({ limit: '2mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '2mb' }));
+
+
 
 module.exports = app;
