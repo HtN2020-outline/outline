@@ -84,30 +84,30 @@ function PopupPage(props) {
   const handleFiles = (files) => {
     setFile(files.base64);
     const config = {
-      title: 'MTE111 - LAB',
-      start: new Date('2021-02-01T12:00:00'),
-      end: new Date('2021-02-01T13:00:00'),
+      title: 'MTE111-Lecture',
+      start: new Date('2021-01-25T14:30:00'),
+      end: new Date('2021-01-25T15:30:00'),
       recurrence: {
-        frequency: 'MONTHLY'
+        frequency: 'WEEKLY'
       }
     }
     const icalendar = new ICalendar(config)
 
     const secondEvent = new ICalendar({
-      title: 'MTE111 - Lecture',
-      start: new Date('2021-1-25T14:30:00'),
-      end: new Date('2021-1-25T15:30:00'),
+      title: 'MTE111-LAB',
+      start: new Date('2021-02-01T12:00:00'),
+      end: new Date('2021-02-01T13:00:00'),
       recurrence: {
-        frequency: 'WEEKLY'
+        frequency: 'MONTHLY'
       }
     })
     
     icalendar.addEvent(secondEvent)
 
     const thirdEvent = new ICalendar({
-      title: 'MTE111 - Lecture',
-      start: new Date('2021-1-27T09:30:00'),
-      end: new Date('2021-1-27T11:30:00'),
+      title: 'MTE111-Lecture',
+      start: new Date('2021-01-27T09:30:00'),
+      end: new Date('2021-01-27T11:30:00'),
       recurrence: {
         frequency: 'WEEKLY'
       }
@@ -116,9 +116,9 @@ function PopupPage(props) {
     icalendar.addEvent(thirdEvent)
 
     const fourthEvent = new ICalendar({
-      title: 'MTE111 - Finals',
+      title: 'MTE111-Quiz',
       start: new Date('2021-02-26T09:30:00'),
-      end: new Date('2021-1-27T11:30:00'),
+      end: new Date('2021-02-27T11:30:00'),
     })
     
     icalendar.addEvent(fourthEvent)
