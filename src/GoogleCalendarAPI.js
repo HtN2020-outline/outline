@@ -27,11 +27,11 @@ export default function googleCalendarAPI(description, startDate, endDate, colou
             'summary': description,
             
             'start': {
-            'dateTime': startDate.concat('T12:00:00-08:00'),
+            'dateTime': startDate,
             'timeZone': 'America/Vancouver'
             },
             'end': {
-            'dateTime': endDate.concat('T12:00:00-08:00'),
+            'dateTime': endDate,
             'timeZone': 'America/Vancouver'
             },
             'colorId': colour,

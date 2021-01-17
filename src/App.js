@@ -6,8 +6,8 @@ import './App.css';
 function App() {
 
   var description = "HELLO HELLO HELLO";
-  var startDate = "2021-01-17";
-  var endDate = "2021-01-20";
+  var startDate = "2021-01-17T12:00:00-08:00";
+  var endDate = "2021-01-20T12:00:00-08:00";
   var colorId = "10";
 
   const handleClick = () => {
