@@ -1,17 +1,29 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import logo from './logo.svg';
+import googleCalendarAPI from './GoogleCalendarAPI';
+import './App.css';
 
 function App() {
+
+  var description = "HELLO HELLO HELLO";
+  var startDate = "2021-01-17";
+  var endDate = "2021-01-20";
+  var colorId = "10";
+
+  const handleClick = () => {
+    googleCalendarAPI(description,startDate,endDate,colorId)
+    
+  }
+
+
   return (
-    <BrowserRouter>
     <div className="App">
-      <link rel="preconnect" href="https://fonts.gstatic.com"/>
-      <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet"/>
-      <Switch>
-        {/*<Route exact path="/" component={MainPage} />*/}
-      </Switch>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Click to add event to Google Calendar</p>
+        { <button style={{width: 100, height: 50}} onClick={handleClick}>Add Event</button> }
+      </header>
     </div>
-  </BrowserRouter>
   );
 }
 
