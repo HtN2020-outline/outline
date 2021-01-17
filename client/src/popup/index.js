@@ -15,22 +15,37 @@ const pageStyles = makeStyles((theme) => ({
   root: {
     height: "400px",
     width: "400px",
-    border: "solid",
-    borderColor: "black",
+    // border: "solid",
+    // borderColor: "black",
     borderRadius: '1rem',
     margin: '0'
   },
   header: {
     height: '50px',
-    backgroundColor: 'black',
+    backgroundColor: '#0077B6',
     marginBottom: '2rem',
+    display:'flex',
+    borderTopLeftRadius:10,
+    borderTopRightRadius:10,
   },
   headertext: {
     color: 'white',
-    margin: '0 auto 0 auto',
+    margin: '0 60px 0 60px',
     verticalAlign:'middle',
     textAlign: 'center',
-    paddingTop: '0.3rem'
+    paddingTop: '0.3rem',
+    fontFamily: 'Roboto',
+    display: 'inline',
+    paddingBottom: '2vw',
+
+    fontFamily: 'Roboto',
+fontStyle: 'normal',
+fontWeight: '500',
+
+letterSpacing: '0.15px',
+
+textShadow: '2px 5px 4px rgba(0, 0, 0, 0.25)',
+
   },    
   textinput: {
     width: "250px",
@@ -146,7 +161,8 @@ function PopupPage(props) {
   return (
     <div id="main" className={classes.root}>
       <div className={classes.header}>
-          <h1 className={classes.headertext}>Outline</h1>
+        <img src="logo.png"  style={{width: '40px', height: '40px', display: 'inline', borderRadius:10, marginLeft:30, marginTop:5}}/>
+        <h1 className={classes.headertext}>Outline</h1>
       </div>
       <TextField
         id="outlined-basic"
@@ -176,7 +192,6 @@ function PopupPage(props) {
       >
         <input type="file" onChange={handleCapture} accept="application/pdf"  />
       </RaisedButton>*/}
-
       <ReactFileReader
         handleFiles={handleFiles}
         fileTypes={[".pdf"]}
